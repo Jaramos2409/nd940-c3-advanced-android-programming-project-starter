@@ -1,4 +1,4 @@
-package com.udacity
+package com.udacity.customviews
 
 
 sealed class ButtonState {
@@ -6,3 +6,4 @@ sealed class ButtonState {
     object Loading : ButtonState()
     object Completed : ButtonState()
 }
+

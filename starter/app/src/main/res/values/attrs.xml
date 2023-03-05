@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="LoadingButton">
-<!--   TODO: create custom attributes for the view-->
+        <attr name="completedDownloadText" format="string"/>
+        <attr name="completedDownloadTextColor" format="color"/>
+        <attr name="completedDownloadTextSize" format="dimension"/>
+        <attr name="downloadInProgressText" format="string"/>
+        <attr name="downloadInProgressTextColor" format="color"/>
+        <attr name="downloadInProgressTextSize" format="dimension"/>
+        <attr name="backgroundColor" format="color"/>
+        <attr name="loadingBarFillColor" format="color"/>
+        <attr name="loadingCircleFillColor" format="color"/>
     </declare-styleable>
 </resources>

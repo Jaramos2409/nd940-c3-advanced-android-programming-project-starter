@@ -2,4 +2,12 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="default_text_size">20sp</dimen>
+    <dimen name="zero_margin">0dp</dimen>
+    <dimen name="radio_group_left_and_right_margins">30dp</dimen>
+    <dimen name="radio_button_padding">10dp</dimen>
+    <dimen name="radio_button_max_width">320dp</dimen>
+    <dimen name="radio_button_padding_bottom">5dp</dimen>
+    <dimen name="loading_button_height">60dp</dimen>
+    <dimen name="loading_button_margin">20dp</dimen>
+    <dimen name="radio_button_text_size">20sp</dimen>
 </resources>
