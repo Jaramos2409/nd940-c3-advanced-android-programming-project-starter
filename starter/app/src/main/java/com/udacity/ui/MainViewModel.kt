@@ -16,7 +16,8 @@ private const val TAG = "MainViewModel"
 
 class MainViewModel(private val app: Application) : AndroidViewModel(app) {
 
-    private val _selectedRepositoryForDownloading = MutableLiveData<DownloadUrl>()
+    private val _selectedRepositoryForDownloadingUrl = MutableLiveData<DownloadUrl>()
+    private val _selectedRepositoryForDownloadName = MutableLiveData<String>()
     private val downloadManager =
         app.getSystemService(AppCompatActivity.DOWNLOAD_SERVICE) as DownloadManager
     private lateinit var downloadProgressWatcher: DownloadProgressWatcher
@@ -31,34 +32,39 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
 
     init {
         _shouldButtonBeClickable.value = true
-        _selectedRepositoryForDownloading.value = DownloadUrl.GLIDE
+//        _selectedRepositoryForDownloadingUrl.value = DownloadUrl.GLIDE
+//        _selectedRepositoryForDownloadName.value = app.getString(R.string.glide_image_loading_library_by_bumptech)
         _downloadId.value = 0L
         downloadProgress.value = null
     }
 
+    fun setSelectedRepositoryForDownloadingName(name: String) {
+        _selectedRepositoryForDownloadName.value = name
+    }
+
     fun setSelectedRepositoryForDownloadingToGlide() {
         Log.d(TAG, "Selected Glide as the repository to download.")
-        _selectedRepositoryForDownloading.value = DownloadUrl.GLIDE
+        _selectedRepositoryForDownloadingUrl.value = DownloadUrl.GLIDE
     }
 
     fun setSelectedRepositoryForDownloadingToLoadApp() {
         Log.d(TAG, "Selected Load App as the repository to download.")
-        _selectedRepositoryForDownloading.value = DownloadUrl.LOAD_APP
+        _selectedRepositoryForDownloadingUrl.value = DownloadUrl.LOAD_APP
     }
 
     fun setSelectedRepositoryForDownloadingToRetrofit() {
         Log.d(TAG, "Selected Retrofit as the repository to download.")
-        _selectedRepositoryForDownloading.value = DownloadUrl.RETROFIT
+        _selectedRepositoryForDownloadingUrl.value = DownloadUrl.RETROFIT
     }
 
-    private fun getSelectedRepositoryForDownload() = _selectedRepositoryForDownloading.value?.url
+    private fun getSelectedRepositoryForDownload() = _selectedRepositoryForDownloadingUrl.value?.url
 
     fun download() {
         val request =
             DownloadManager.Request(Uri.parse(getSelectedRepositoryForDownload()))
-                .setTitle(app.getString(R.string.app_name))
+                .setTitle(_selectedRepositoryForDownloadName.value)
                 .setDescription(app.getString(R.string.app_description))
-                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN)
                 .setRequiresCharging(false)
                 .setAllowedOverMetered(true)
                 .setAllowedOverRoaming(true)
@@ -78,7 +84,6 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
                         if (progress == 100L) {
                             _downloadId.value = null
                             _shouldButtonBeClickable.value = true
-//                        downloadProgress.value = null
                         }
                     }
                 }

@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import androidx.core.content.withStyledAttributes
 import androidx.databinding.BindingAdapter
 import com.udacity.Constants
@@ -130,6 +131,15 @@ class LoadingButton @JvmOverloads constructor(
 
     fun setButtonStateCompleted() {
         buttonState = ButtonState.Completed
+    }
+
+    fun triggerAnimationWithoutSelection() {
+        setButtonStateLoading()
+        loadingButtonProgress.createLoadingAnimation(
+            100L,
+            Constants.NO_SELECTION_ANIMATION_DURATION,
+            DecelerateInterpolator()
+        )
     }
 
 }

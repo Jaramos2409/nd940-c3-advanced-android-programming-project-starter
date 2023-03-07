@@ -17,4 +17,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="DetailActivityRepoName" parent="AppTheme">
+        <item name="android:textColor">@color/maastricht_blue</item>
+        <item name="android:textSize">@dimen/detail_activity_text_size</item>
+    </style>
+
+    <style name="DetailActivityLabelName" parent="AppTheme">
+        <item name="android:textSize">@dimen/detail_activity_text_size</item>
+    </style>
+
 </resources>

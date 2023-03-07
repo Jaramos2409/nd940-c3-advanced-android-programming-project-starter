@@ -3,11 +3,8 @@ package com.udacity.customviews
 import android.animation.*
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import com.udacity.Constants
-
-private const val TAG = "LoadingButtonProgress"
 
 class LoadingButtonProgress(
     val loadButton: LoadingButton,
@@ -51,7 +48,6 @@ class LoadingButtonProgress(
             this.interpolator = interpolator
             this.duration = animationDuration
             addUpdateListener {
-                Log.d(TAG, "animatedValue inside of createLoadingAnimation: ${it.animatedValue}")
                 loadingCircleProgress =
                     (currentLoadingCircleProgress + ((it.animatedValue as Float) * difference)).toFloat()
                 loadButton.invalidate()

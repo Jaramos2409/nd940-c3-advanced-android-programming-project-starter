@@ -78,7 +78,6 @@
                     android:id="@+id/radio_glide"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:checked="true"
                     android:maxWidth="@dimen/radio_button_max_width"
                     android:paddingTop="@dimen/radio_button_padding_bottom"
                     android:paddingBottom="@dimen/radio_button_padding_bottom"
