@@ -29,4 +29,5 @@
     <string name="status">Status:</string>
     <string name="fail">Fail</string>
     <string name="success">Success</string>
+    <string name="button_that_can_be_tapped_to_download_the_repository_of_choice">Tap to download the repository of choice.</string>
 </resources>
