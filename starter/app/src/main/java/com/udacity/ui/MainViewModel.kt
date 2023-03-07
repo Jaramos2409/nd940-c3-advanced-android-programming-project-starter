@@ -8,7 +8,6 @@ import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.udacity.R
 
@@ -22,18 +21,11 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
         app.getSystemService(AppCompatActivity.DOWNLOAD_SERVICE) as DownloadManager
     private lateinit var downloadProgressWatcher: DownloadProgressWatcher
 
-    private val _shouldButtonBeClickable = MutableLiveData<Boolean>()
-    val shouldButtonBeClickable: LiveData<Boolean>
-        get() = _shouldButtonBeClickable
-
     private val _downloadId = MutableLiveData<Long?>()
 
     val downloadProgress = MutableLiveData<Long?>()
 
     init {
-        _shouldButtonBeClickable.value = true
-//        _selectedRepositoryForDownloadingUrl.value = DownloadUrl.GLIDE
-//        _selectedRepositoryForDownloadName.value = app.getString(R.string.glide_image_loading_library_by_bumptech)
         _downloadId.value = 0L
         downloadProgress.value = null
     }
@@ -72,7 +64,6 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
         _downloadId.value =
             downloadManager.enqueue(request)
 
-        _shouldButtonBeClickable.value = false
 
         downloadProgressWatcher =
             DownloadProgressWatcher(_downloadId.value!!, downloadManager) { progress ->
@@ -83,7 +74,6 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
 
                         if (progress == 100L) {
                             _downloadId.value = null
-                            _shouldButtonBeClickable.value = true
                         }
                     }
                 }

@@ -31,10 +31,13 @@ class LoadingButton @JvmOverloads constructor(
                     AccelerateDecelerateInterpolator()
                 )
                 setButtonStateLoading()
+            } else if (newValue == ButtonState.Loading) {
+                disableClicking()
             } else if (oldValue == ButtonState.Loading && newValue == ButtonState.Completed) {
                 Log.d(TAG, "ButtonState changed to Completed.")
                 loadingButtonProgress.cancelAllValueAnimators()
                 loadingButtonProgress.resetButtonValues()
+                enableClicking()
             }
         }
     }
@@ -46,7 +49,7 @@ class LoadingButton @JvmOverloads constructor(
         private set
 
     init {
-        isClickable = true
+        enableClicking()
         var completedDownloadText = ""
         var completedDownloadTextColor = 0
         var completedDownloadTextSize = 0f
@@ -142,6 +145,13 @@ class LoadingButton @JvmOverloads constructor(
         )
     }
 
+    fun enableClicking() {
+        isClickable = true
+    }
+
+    fun disableClicking() {
+        isClickable = false
+    }
 }
 
 @BindingAdapter("progress")

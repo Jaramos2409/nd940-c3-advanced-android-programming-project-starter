@@ -105,14 +105,6 @@ class MainFragment : Fragment() {
             }
         }
 
-        viewModel.shouldButtonBeClickable.observe(viewLifecycleOwner) { shouldButtonBeClickable ->
-            run {
-                shouldButtonBeClickable?.let {
-                    binding.customButton.isClickable = shouldButtonBeClickable
-                }
-            }
-        }
-
         createChannel(
             getString(R.string.download_notification_channel_id),
             getString(R.string.download_notification_channel_name)
