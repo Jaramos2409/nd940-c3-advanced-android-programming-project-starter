@@ -4,6 +4,7 @@ import android.app.DownloadManager
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionManager
 import com.udacity.R
 import com.udacity.databinding.FragmentDetailBinding
+
+private const val TAG = "DetailFragment"
 
 class DetailFragment : Fragment() {
 
@@ -35,11 +39,13 @@ class DetailFragment : Fragment() {
         viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
 
         binding.okButton.setOnClickListener {
+            Log.d(TAG, "Tapped on OkButton")
             viewModel.shouldNavigateToMainFragment()
         }
 
         viewModel.navigateToMainFragment.observe(viewLifecycleOwner) { shouldNavigateToMainFragment ->
             if (shouldNavigateToMainFragment) {
+                triggerMotionLayoutTransition()
                 findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToMainFragment())
                 viewModel.resetNavigationToMainFragment()
             }
@@ -69,6 +75,19 @@ class DetailFragment : Fragment() {
         args?.getString("fileName").let {
             binding.fileNameValue.text = it
         }
+    }
+
+    private fun triggerMotionLayoutTransition() {
+        val motionLayout = binding.detailMotionLayout
+        motionLayout.transitionToEnd()
+//        motionLayout.setTransition(R.id.start, R.id.end)
+//
+//        TransitionManager.beginDelayedTransition(motionLayout)
+//        motionLayout.apply {
+//            setTransition(R.id.start, R.id.end)
+//            setTransitionDuration(500)
+//            transitionToEnd()
+//        }
     }
 
 }
