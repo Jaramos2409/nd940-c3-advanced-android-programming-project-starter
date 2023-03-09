@@ -9,7 +9,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.content.withStyledAttributes
 import androidx.databinding.BindingAdapter
-import com.udacity.Constants
 import com.udacity.R
 import kotlin.properties.Delegates
 
@@ -19,6 +18,11 @@ class LoadingButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    companion object {
+        const val INITIAL_LOADING_ANIMATION_DURATION = 1500L
+        const val NO_SELECTION_ANIMATION_DURATION = 2000L
+    }
+
     private var widthSize = 0
     private var heightSize = 0
     private var buttonState: ButtonState by Delegates.observable(ButtonState.Completed) { _, oldValue, newValue ->
@@ -27,7 +31,7 @@ class LoadingButton @JvmOverloads constructor(
                 Log.d(TAG, "ButtonState changed to Clicked.")
                 loadingButtonProgress.createLoadingAnimation(
                     50L,
-                    Constants.INITIAL_LOADING_ANIMATION_DURATION,
+                    INITIAL_LOADING_ANIMATION_DURATION,
                     AccelerateDecelerateInterpolator()
                 )
                 setButtonStateLoading()
@@ -140,16 +144,16 @@ class LoadingButton @JvmOverloads constructor(
         setButtonStateLoading()
         loadingButtonProgress.createLoadingAnimation(
             100L,
-            Constants.NO_SELECTION_ANIMATION_DURATION,
+            NO_SELECTION_ANIMATION_DURATION,
             DecelerateInterpolator()
         )
     }
 
-    fun enableClicking() {
+    private fun enableClicking() {
         isClickable = true
     }
 
-    fun disableClicking() {
+    private fun disableClicking() {
         isClickable = false
     }
 }

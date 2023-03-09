@@ -1,7 +1,0 @@
-package com.udacity
-
-object Constants {
-    const val INITIAL_LOADING_ANIMATION_DURATION = 1500L
-    const val NO_SELECTION_ANIMATION_DURATION = 2000L
-    const val IN_PROGRESS_LOADING_ANIMATION_DURATION = 500L
-}

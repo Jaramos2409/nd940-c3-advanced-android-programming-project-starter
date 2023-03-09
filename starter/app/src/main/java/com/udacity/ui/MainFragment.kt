@@ -62,7 +62,7 @@ class MainFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         binding.radioGlide.setOnClickListener {
@@ -114,16 +114,12 @@ class MainFragment : Fragment() {
     }
 
     private fun createChannel(channelId: String, channelName: String) {
-        // TODO: Step 1.6 START create a channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Create channel to show notifications.
             val notificationChannel = NotificationChannel(
                 channelId,
                 channelName,
-                // TODO: Step 2.4 change importance
                 NotificationManager.IMPORTANCE_HIGH
             )
-                // TODO: Step 2.6 disable badges for this channel
                 .apply {
                     setShowBadge(false)
                 }
@@ -140,7 +136,6 @@ class MainFragment : Fragment() {
             notificationManager.createNotificationChannel(notificationChannel)
 
         }
-        // TODO: Step 1.6 END create channel
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -149,7 +144,7 @@ class MainFragment : Fragment() {
             ContextCompat.checkSelfPermission(
                 requireContext(), Manifest.permission.POST_NOTIFICATIONS
             ) == PackageManager.PERMISSION_GRANTED -> {
-                Log.e(TAG, "POST NOTIFICATION PERMISSION GRANTED")
+                Log.i(TAG, "POST NOTIFICATION PERMISSION GRANTED")
             }
             ActivityCompat.shouldShowRequestPermissionRationale(
                 requireActivity(),

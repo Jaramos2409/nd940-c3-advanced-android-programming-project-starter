@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.transition.TransitionManager
 import com.udacity.R
 import com.udacity.databinding.FragmentDetailBinding
 
@@ -34,7 +33,7 @@ class DetailFragment : Fragment() {
             container,
             false
         )
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
 
@@ -45,7 +44,6 @@ class DetailFragment : Fragment() {
 
         viewModel.navigateToMainFragment.observe(viewLifecycleOwner) { shouldNavigateToMainFragment ->
             if (shouldNavigateToMainFragment) {
-                triggerMotionLayoutTransition()
                 findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToMainFragment())
                 viewModel.resetNavigationToMainFragment()
             }
@@ -77,17 +75,5 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun triggerMotionLayoutTransition() {
-        val motionLayout = binding.detailMotionLayout
-        motionLayout.transitionToEnd()
-//        motionLayout.setTransition(R.id.start, R.id.end)
-//
-//        TransitionManager.beginDelayedTransition(motionLayout)
-//        motionLayout.apply {
-//            setTransition(R.id.start, R.id.end)
-//            setTransitionDuration(500)
-//            transitionToEnd()
-//        }
-    }
 
 }

@@ -4,13 +4,17 @@ import android.animation.*
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.view.animation.AccelerateInterpolator
-import com.udacity.Constants
 
 class LoadingButtonProgress(
     val loadButton: LoadingButton,
     val loadingBarFillColor: Int,
     val loadingCircleFillColor: Int
 ) {
+
+    companion object {
+        const val IN_PROGRESS_LOADING_ANIMATION_DURATION = 500L
+    }
+
     val loadingBarFillPaint = Paint().apply {
         style = Paint.Style.FILL
         color = loadingBarFillColor
@@ -75,7 +79,7 @@ class LoadingButtonProgress(
         if (progress >= 65L) {
             createLoadingAnimation(
                 progress,
-                Constants.IN_PROGRESS_LOADING_ANIMATION_DURATION,
+                IN_PROGRESS_LOADING_ANIMATION_DURATION,
                 AccelerateInterpolator()
             )
         }

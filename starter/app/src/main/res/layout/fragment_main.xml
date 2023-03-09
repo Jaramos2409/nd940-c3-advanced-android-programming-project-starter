@@ -9,123 +9,105 @@
             type="com.udacity.ui.MainViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_main_scene">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".32" />
+
+        <ImageView
+            android:id="@+id/download_icon_image_view"
+            android:layout_width="@dimen/zero_margin"
+            android:layout_height="@dimen/zero_margin"
+            android:layout_margin="@dimen/zero_margin"
+            android:background="@color/warm_black"
+            android:contentDescription="@string/purple_download_icon"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_one"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/download_circle" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_repository_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:layout_marginLeft="@dimen/radio_group_left_and_right_margins"
+            android:layout_marginRight="@dimen/radio_group_left_and_right_margins"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/custom_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_two"
+            app:layout_constraintVertical_bias="0.0">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/load_app" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_one"
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_glide"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent=".3" />
+                android:layout_height="match_parent"
+                android:maxWidth="@dimen/radio_button_max_width"
+                android:paddingTop="@dimen/radio_button_padding_bottom"
+                android:paddingBottom="@dimen/radio_button_padding_bottom"
+                android:text="@string/glide_image_loading_library_by_bumptech"
+                android:textSize="20sp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_two"
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_load_app"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent=".32" />
+                android:layout_height="match_parent"
+                android:maxWidth="@dimen/radio_button_max_width"
+                android:paddingTop="@dimen/radio_button_padding_bottom"
+                android:paddingBottom="@dimen/radio_button_padding_bottom"
+                android:text="@string/load_app_current_repository_by_udacity"
+                android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="@dimen/zero_margin"
-                android:layout_height="@dimen/zero_margin"
-                android:layout_margin="@dimen/zero_margin"
-                android:background="@color/warm_black"
-                android:contentDescription="@string/purple_download_icon"
-                app:layout_constraintBottom_toTopOf="@+id/guideline_one"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/download_circle" />
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_retrofit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:maxWidth="@dimen/radio_button_max_width"
+                android:paddingTop="@dimen/radio_button_padding_bottom"
+                android:paddingBottom="@dimen/radio_button_padding_bottom"
+                android:text="@string/retrofit_type_safe_http_client_for_android_and_java_by_square_inc"
+                android:textSize="@dimen/radio_button_text_size" />
+        </RadioGroup>
 
-            <RadioGroup
-                android:id="@+id/radio_group_repository_select"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/radio_group_left_and_right_margins"
-                android:layout_marginRight="@dimen/radio_group_left_and_right_margins"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@id/custom_button"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline_two"
-                app:layout_constraintVertical_bias="0.0">
+        <com.udacity.customviews.LoadingButton
+            android:id="@+id/custom_button"
+            android:layout_width="@dimen/zero_margin"
+            android:layout_height="@dimen/loading_button_height"
+            android:layout_marginStart="@dimen/loading_button_margin"
+            android:layout_marginEnd="@dimen/loading_button_margin"
+            android:background="@color/colorPrimary"
+            app:completedDownloadText="@string/download"
+            app:completedDownloadTextColor="@color/white"
+            app:completedDownloadTextSize="20sp"
+            app:downloadInProgressText="@string/we_are_loading"
+            app:downloadInProgressTextColor="@color/white"
+            app:downloadInProgressTextSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radio_group_repository_select"
+            app:layout_constraintVertical_bias="1.0"
+            app:loadingBarFillColor="@color/colorPrimaryDark"
+            app:loadingCircleFillColor="@color/colorAccent"
+            app:progress="@{viewModel.downloadProgress}" />
 
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/radio_glide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:maxWidth="@dimen/radio_button_max_width"
-                    android:paddingTop="@dimen/radio_button_padding_bottom"
-                    android:paddingBottom="@dimen/radio_button_padding_bottom"
-                    android:text="@string/glide_image_loading_library_by_bumptech"
-                    android:textSize="20sp" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/radio_load_app"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:maxWidth="@dimen/radio_button_max_width"
-                    android:paddingTop="@dimen/radio_button_padding_bottom"
-                    android:paddingBottom="@dimen/radio_button_padding_bottom"
-                    android:text="@string/load_app_current_repository_by_udacity"
-                    android:textSize="20sp" />
-
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/radio_retrofit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:maxWidth="@dimen/radio_button_max_width"
-                    android:paddingTop="@dimen/radio_button_padding_bottom"
-                    android:paddingBottom="@dimen/radio_button_padding_bottom"
-                    android:text="@string/retrofit_type_safe_http_client_for_android_and_java_by_square_inc"
-                    android:textSize="@dimen/radio_button_text_size" />
-            </RadioGroup>
-
-            <com.udacity.customviews.LoadingButton
-                android:id="@+id/custom_button"
-                android:layout_width="@dimen/zero_margin"
-                android:layout_height="@dimen/loading_button_height"
-                android:layout_margin="@dimen/loading_button_margin"
-                android:background="@color/colorPrimary"
-                app:completedDownloadText="@string/download"
-                app:completedDownloadTextColor="@color/white"
-                app:completedDownloadTextSize="20sp"
-                app:downloadInProgressText="@string/we_are_loading"
-                app:downloadInProgressTextColor="@color/white"
-                app:downloadInProgressTextSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/radio_group_repository_select"
-                app:layout_constraintVertical_bias="1.0"
-                app:loadingBarFillColor="@color/colorPrimaryDark"
-                app:loadingCircleFillColor="@color/colorAccent"
-                app:progress="@{viewModel.downloadProgress}" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

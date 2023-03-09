@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.udacity.ui.MainFragment"
-        android:label="MainFragment" >
+        android:label="@string/load_app">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -15,10 +15,13 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.udacity.ui.DetailFragment"
-        android:label="DetailFragment">
+        android:label="@string/detail_activity">
         <action
             android:id="@+id/action_detailFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popUpTo="@id/mainFragment" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>
